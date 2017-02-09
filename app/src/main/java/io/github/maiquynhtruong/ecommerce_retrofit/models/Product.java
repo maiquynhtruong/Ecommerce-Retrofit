@@ -1,7 +1,8 @@
 package io.github.maiquynhtruong.ecommerce_retrofit.models;
 
 /**
-  Example API call: https://api.zappos.com/Search?term=nike&key=b743e26728e16b81da139182bb2094357c31d331
+  Example API call:
+ https://api.zappos.com/Search?term=nike&key=b743e26728e16b81da139182bb2094357c31d331
  */
 
 public class Product {
@@ -12,13 +13,18 @@ public class Product {
     private String percentOff = "";
     private String productUrl = "";
 
+    private String thumbnailImageUrl = "";
+
     /** Constructor**/
-    public Product(String name, String original_price, String price, String productId, String percentOff) {
-        this.productName = name;
+    public Product(String productName, String original_price, String price, String productId,
+                   String percentOff, String productUrl, String thumbnailImageUrl) {
+        this.productName = productName;
         this.productId = productId;
         this.originalPrice = original_price;
         this.price = price;
         this.percentOff = percentOff;
+        this.productUrl = productUrl;
+        this.thumbnailImageUrl = thumbnailImageUrl;
     }
 
     public String getProductName() {
@@ -69,4 +75,11 @@ public class Product {
         this.productUrl = productUrl;
     }
 
+    public String getThumbnailImageUrl() {
+        return thumbnailImageUrl;
+    }
+
+    public void setThumbnailImageUrl(String thumbnailImageUrl) {
+        this.thumbnailImageUrl = thumbnailImageUrl;
+    }
 }
