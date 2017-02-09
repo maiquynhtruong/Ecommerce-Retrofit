@@ -1,8 +1,72 @@
 package io.github.maiquynhtruong.ecommerce_retrofit.models;
 
 /**
- * Created by Mai on 2/7/2017.
+  Example API call: https://api.zappos.com/Search?term=nike&key=b743e26728e16b81da139182bb2094357c31d331
  */
 
 public class Product {
+    private String productName = "";
+    private String originalPrice = "";
+    private String productId = "";
+    private String price = "";
+    private String percentOff = "";
+    private String productUrl = "";
+
+    /** Constructor**/
+    public Product(String name, String original_price, String price, String productId, String percentOff) {
+        this.productName = name;
+        this.productId = productId;
+        this.originalPrice = original_price;
+        this.price = price;
+        this.percentOff = percentOff;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public void setOriginalPrice(String originalPrice) {
+        this.originalPrice = originalPrice;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getPercentOff() {
+        return percentOff;
+    }
+
+    public void setPercentOff(String percentOff) {
+        this.percentOff = percentOff;
+    }
+
+    public String getProductUrl() {
+        return productUrl;
+    }
+
+    public void setProductUrl(String productUrl) {
+        this.productUrl = productUrl;
+    }
+
 }
