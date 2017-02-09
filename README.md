@@ -1,2 +1,2 @@
-# ILoveZappos
-To do the challenge
+# Ecommerce-Retrofit
+Android Ecommerce example using Data binding and Retrofit API from Square.
