@@ -1,18 +1,26 @@
 package io.github.maiquynhtruong.ecommerce_retrofit.models;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
   Example API call:
  https://api.zappos.com/Search?term=nike&key=b743e26728e16b81da139182bb2094357c31d331
  */
 
 public class Product {
+    @SerializedName("productName")
     private String productName = "";
+    @SerializedName("originalPrice")
     private String originalPrice = "";
+    @SerializedName("ProductId")
     private String productId = "";
+    @SerializedName("price")
     private String price = "";
+    @SerializedName("percentOff")
     private String percentOff = "";
+    @SerializedName("productUrl")
     private String productUrl = "";
-
+    @SerializedName("thumbnailImageUrl")
     private String thumbnailImageUrl = "";
 
     /** Constructor**/
