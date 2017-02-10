@@ -1,4 +1,4 @@
-package io.github.maiquynhtruong.ecommerce_retrofit.view.adapter;
+package io.github.maiquynhtruong.ecommerce_retrofit.view.adapters;
 
 import android.database.DataSetObserver;
 import android.view.View;
