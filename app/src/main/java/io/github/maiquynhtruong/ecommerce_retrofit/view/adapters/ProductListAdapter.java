@@ -10,15 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import java.util.ArrayList;
 
-import java.util.List;
-
-import io.github.maiquynhtruong.ecommerce_retrofit.BR;
 import io.github.maiquynhtruong.ecommerce_retrofit.R;
 import io.github.maiquynhtruong.ecommerce_retrofit.models.Product;
 
@@ -27,9 +22,9 @@ import io.github.maiquynhtruong.ecommerce_retrofit.models.Product;
  */
 
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.BindingHolder> {
-    List<Product> products;
+    ArrayList<Product> products;
 
-    public ProductListAdapter(List<Product> products) {
+    public ProductListAdapter(ArrayList<Product> products) {
         this.products = products;
     }
     @Override
@@ -42,7 +37,12 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     @Override
     public void onBindViewHolder(BindingHolder holder, int position) {
         Product product = products.get(position);
-        holder.bindHolder(product);
+        holder.productName.setText(product.getProductName());
+        holder.originalPrice.setText(product.getOriginalPrice());
+//        holder.productId.setText(product.getProductId());
+        holder.price.setText(product.getPrice());
+        holder.percentOff.setText(product.getPercentOff());
+        holder.thumbnailImageUrl.setImageResource(R.drawable.ic_shoe);
     }
 
     @Override
@@ -51,18 +51,19 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     }
 
     public static class BindingHolder extends RecyclerView.ViewHolder {
-        private ViewDataBinding binding;
+        private TextView productName, originalPrice, productId, price,
+                percentOff, productUrl;
+        private ImageView thumbnailImageUrl;
 
         public BindingHolder(View itemView) {
             super(itemView);
-            this.binding = DataBindingUtil.bind(itemView);
-        }
-        public void bindHolder(Product product) {
-            binding.setVariable(BR.product, product);
-            binding.executePendingBindings();
-        }
 
-
+            productName = (TextView) itemView.findViewById(R.id.product_name);
+            originalPrice = (TextView) itemView.findViewById(R.id.product_original_price);
+            percentOff = (TextView) itemView.findViewById(R.id.product_percent_off);
+            price = (TextView) itemView.findViewById(R.id.product_price);
+            thumbnailImageUrl = (ImageView) itemView.findViewById(R.id.product_image);
+        }
     }
 
 
