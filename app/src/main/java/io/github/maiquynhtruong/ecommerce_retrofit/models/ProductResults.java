@@ -9,8 +9,8 @@ import io.github.maiquynhtruong.ecommerce_retrofit.models.Product;
  */
 
 public class ProductResults {
-    public List<Product> result;
-    public List<Product> getProducts() {
-        return result;
+    public Product[] results;
+    public Product[] getProducts() {
+        return results;
     }
 }
