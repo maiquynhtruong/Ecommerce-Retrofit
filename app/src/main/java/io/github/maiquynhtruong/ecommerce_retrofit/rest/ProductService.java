@@ -7,6 +7,7 @@ import io.github.maiquynhtruong.ecommerce_retrofit.models.ProductResults;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by Mai on 2/7/2017.
@@ -14,7 +15,7 @@ import retrofit2.http.Path;
 
 public interface ProductService {
 
-    @GET("term={keyword}&key={apiKey}")
-    Call<List<Product>> getProducts(@Path("keyword") String keyword, @Path("apiKey") String apiKey);
+    @GET("Search?")
+    Call<ProductResults> getProducts(@Query("term") String keyword, @Query("key") String apiKey);
 
 }
