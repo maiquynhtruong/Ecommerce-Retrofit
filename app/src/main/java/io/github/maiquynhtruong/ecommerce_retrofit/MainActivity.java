@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rvProduct;
     ArrayList<Product> productList;
     ProductListAdapter adapter;
-    ActivityMainBinding binding;
+//    ActivityMainBinding binding;
     public static final String API_KEY = "b743e26728e16b81da139182bb2094357c31d331";
     public static final String API_BASE_URL = "https://api.zappos.com/";
 
@@ -45,16 +46,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("MainMai", "FloatingButton clicked");
-                getUserQuery();
-            }
-        });
+
         productList = new ArrayList<>();
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+//        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         rvProduct = (RecyclerView) findViewById(R.id.recycler_view);
         rvProduct.setLayoutManager(new LinearLayoutManager(this));
         fetchResults("nike");
