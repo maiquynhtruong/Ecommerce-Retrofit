@@ -3,7 +3,6 @@ package io.github.maiquynhtruong.ecommerce_retrofit;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
-import android.databinding.ObservableArrayList;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +18,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import io.github.maiquynhtruong.ecommerce_retrofit.databinding.ActivityMainBinding;
 import io.github.maiquynhtruong.ecommerce_retrofit.models.Product;
 import io.github.maiquynhtruong.ecommerce_retrofit.models.ProductResults;
 import io.github.maiquynhtruong.ecommerce_retrofit.rest.ProductService;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rvProduct;
     ArrayList<Product> productList;
     ProductListAdapter adapter;
+    ActivityMainBinding binding;
     public static final String API_KEY = "b743e26728e16b81da139182bb2094357c31d331";
     public static final String API_BASE_URL = "https://api.zappos.com/";
 
@@ -47,19 +49,15 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("MainMai", "FloatingButton clicked");
                 getUserQuery();
             }
         });
-        productList= new ArrayList<>();
-
+        productList = new ArrayList<>();
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         rvProduct = (RecyclerView) findViewById(R.id.recycler_view);
         rvProduct.setLayoutManager(new LinearLayoutManager(this));
-
-//        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        Product product = new Product("First", "10.0", "7.5", "1234", "25%", "zappos.com/first", "tumblr.com/image");
-        productList.add(product);
         fetchResults("nike");
-//        binding.setProducts(productList);
     }
 
     @Override
@@ -120,22 +118,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ProductResults> call, Response<ProductResults> response) {
                 ProductResults products = response.body();
-                productList = new ArrayList<>(Arrays.asList(products.getProducts()));
+                productList = products.getProducts();
 
                 if (productList.size() > 0) {
-                    for (Product p : productList) {
-                        Log.d("Main", p.getProductName());
-                    }
                     adapter = new ProductListAdapter(productList);
                     rvProduct.setAdapter(adapter);
                 } else {
-                    Toast.makeText(getBaseContext(), "No Item found", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), R.string.no_item_found, Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ProductResults> call, Throwable t) {
-                Toast.makeText(getBaseContext(), "Failed to get search results. Try again later", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), R.string.failed_get_search_result, Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -7,15 +7,18 @@
             type="io.github.maiquynhtruong.ecommerce_retrofit.models.Product" />
     </data>
 
-    <RelativeLayout
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:padding="16dp">
         <ImageView
             android:id="@+id/product_image"
-            android:layout_width="@dimen/product_image_width"
-            android:layout_height="@dimen/product_image_height"/>
-            <!--app:imageUrl="@{product.thumbnailImageUrl}"-->
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            app:imageUrl="@{product.thumbnailImageUrl}"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,7 +28,10 @@
                 android:id="@+id/product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textStyle="bold"
                 android:text="@{product.productName}"
+                android:autoLink="web"
                 />
             <LinearLayout
                 android:id="@+id/original_price_discount"
@@ -36,19 +42,25 @@
                     android:id="@+id/product_original_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{product.originalPrice}" />
+                    android:layout_weight="1"
+                    android:text="@{product.originalPrice}"
+                    tools:text="Original"/>
                 <TextView
                     android:id="@+id/product_percent_off"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{product.percentOff}"/>
+                    android:layout_weight="1"
+                    android:text="@{product.percentOff}"
+                    tools:text="Discount"/>
+                    <!--android:visibility="@{product.percentOff.equals(String.valueOf() ? View.GONE : View.VISIBLE}/>-->
             </LinearLayout>
             <TextView
                 android:id="@+id/product_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{product.price}"/>
+                android:text="@{product.price}"
+                tools:text="Price"/>
         </LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 </layout>

@@ -1,5 +1,6 @@
 package io.github.maiquynhtruong.ecommerce_retrofit.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.github.maiquynhtruong.ecommerce_retrofit.models.Product;
@@ -9,8 +10,8 @@ import io.github.maiquynhtruong.ecommerce_retrofit.models.Product;
  */
 
 public class ProductResults {
-    public Product[] results;
-    public Product[] getProducts() {
+    public ArrayList<Product> results;
+    public ArrayList<Product> getProducts() {
         return results;
     }
 }
