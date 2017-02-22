@@ -1,30 +1,19 @@
 package io.github.maiquynhtruong.ecommerce_retrofit;
 
-import android.app.AlertDialog;
 import android.app.SearchManager;
+import android.app.SearchableInfo;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import io.github.maiquynhtruong.ecommerce_retrofit.databinding.ActivityMainBinding;
 import io.github.maiquynhtruong.ecommerce_retrofit.models.Product;
 import io.github.maiquynhtruong.ecommerce_retrofit.models.ProductResults;
 import io.github.maiquynhtruong.ecommerce_retrofit.rest.ProductService;
@@ -40,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rvProduct;
     ArrayList<Product> productList;
     ProductListAdapter adapter;
-//    ActivityMainBinding binding;
     public static final String API_KEY = "b743e26728e16b81da139182bb2094357c31d331";
     public static final String API_BASE_URL = "https://api.zappos.com/";
 
@@ -52,15 +40,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         productList = new ArrayList<>();
-//        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         rvProduct = (RecyclerView) findViewById(R.id.recycler_view);
         rvProduct.setLayoutManager(new LinearLayoutManager(this));
-        Intent intent = getIntent();
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            fetchResults(query);
-        }
-        fetchResults("nike");
+        fetchResults("");
     }
 
     @Override
@@ -70,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setSubmitButtonEnabled(true);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -79,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                // fetch the results as user types the query
                 fetchResults(newText);
                 return true;
             }
@@ -93,16 +77,11 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_search) {
-            handleSearch();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public void handleSearch() {
-        String string = "nike";
-        fetchResults(string);
-    }
     public void fetchResults(String input) {
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
