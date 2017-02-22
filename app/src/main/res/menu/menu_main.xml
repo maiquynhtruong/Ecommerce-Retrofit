@@ -4,9 +4,9 @@
     tools:context="io.github.maiquynhtruong.ecommerce_retrofit.MainActivity">
     <item
         android:id="@+id/action_search"
-        android:orderInCategory="100"
+        android:orderInCategory="1"
         android:icon="@drawable/ic_search"
-        android:title="Search"
+        android:title="@string/search_title"
         app:showAsAction="collapseActionView|ifRoom"
-        android:actionViewClass="android.support.v7.widget.SearchView"/>
+        app:actionViewClass="android.support.v7.widget.SearchView"/>
 </menu>
