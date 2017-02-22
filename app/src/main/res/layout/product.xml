@@ -24,42 +24,39 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/product_image"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/product_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:textStyle="bold"
-                android:text="@{product.productName}"
-                android:autoLink="web"
-                />
             <LinearLayout
-                android:id="@+id/original_price_discount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:paddingLeft="10dp"
+                android:orientation="vertical">
                 <TextView
-                    android:id="@+id/product_original_price"
+                    android:id="@+id/product_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@{product.originalPrice}"
-                    tools:text="Original"/>
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="@{product.productName}"
+                    android:autoLink="web"
+                    />
                 <TextView
-                    android:id="@+id/product_percent_off"
+                    android:id="@+id/product_brand"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@{product.percentOff}"
-                    tools:text="Discount"/>
+                    android:textStyle="italic"
+                    android:textColor="@color/grey"
+                    android:text="@{product.brandName}"
+                    />
+                <TextView
+                    android:id="@+id/product_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{product.price}"
+                    android:textColor="@color/green"
+                    />
                     <!--android:visibility="@{product.percentOff.equals(String.valueOf() ? View.GONE : View.VISIBLE}/>-->
             </LinearLayout>
-            <TextView
-                android:id="@+id/product_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{product.price}"
-                tools:text="Price"/>
+
         </LinearLayout>
 
     </LinearLayout>
