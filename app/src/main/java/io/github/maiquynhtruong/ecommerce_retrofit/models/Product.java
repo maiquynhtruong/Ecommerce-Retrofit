@@ -8,6 +8,9 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Product {
+
+    @SerializedName("brandName")
+    private String brandName = "";
     @SerializedName("productName")
     private String productName = "";
     @SerializedName("originalPrice")
@@ -25,7 +28,7 @@ public class Product {
 
     /** Constructor**/
     public Product(String productName, String original_price, String price, String productId,
-                   String percentOff, String productUrl, String thumbnailImageUrl) {
+                   String percentOff, String productUrl, String thumbnailImageUrl, String brandName) {
         this.productName = productName;
         this.productId = productId;
         this.originalPrice = original_price;
@@ -33,6 +36,7 @@ public class Product {
         this.percentOff = percentOff;
         this.productUrl = productUrl;
         this.thumbnailImageUrl = thumbnailImageUrl;
+        this.brandName = brandName;
     }
 
     public String getProductName() {
@@ -89,5 +93,12 @@ public class Product {
 
     public void setThumbnailImageUrl(String thumbnailImageUrl) {
         this.thumbnailImageUrl = thumbnailImageUrl;
+    }
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
 }
